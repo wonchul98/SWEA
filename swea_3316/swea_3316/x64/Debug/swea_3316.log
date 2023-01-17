@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\shinw\source\repos\baekjoon_C++\swea_3316\swea_3316\main.cpp(17,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\Users\shinw\source\repos\baekjoon_C++\swea_3316\swea_3316\main.cpp(72): warning C4715: 'not_bin': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  swea_3316.vcxproj -> C:\Users\shinw\source\repos\baekjoon_C++\swea_3316\x64\Debug\swea_3316.exe
