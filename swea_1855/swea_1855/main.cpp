@@ -7,6 +7,7 @@ using namespace std;
 
 int parent[100001];
 int depth[100001];
+int dp[100000][17];
 int N;
 long long cnt = 0;
 queue<int> child[100001];
@@ -26,11 +27,19 @@ int main(int argc, char** argv)
 		cin >> N;
 		int input;
 		depth[1] = 0;
+		
 		for (int i = 2; i <= N; i++) {
 			cin >> input;
 			parent[i] = input;
 			child[input].push(i);
 			depth[i] = depth[input] + 1;
+			if (i == 2) dp[i][depth[i] - 1] = input;
+			else {
+				for (int j = 0; j < depth[i] - 1; j++) {
+					dp[i][j] = dp[input][j];//부모의 배열 가져옴
+					dp[i][depth[i] - 1] = input;//부모
+				}
+			}
 		}
 		solve();
 		cout << cnt << endl;
@@ -70,5 +79,4 @@ void solve() {
 			cnt += 2 * (depth[save_cur] - depth[cur]);
 		}
 	}
-	
 }
