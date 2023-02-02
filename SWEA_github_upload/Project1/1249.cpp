@@ -16,7 +16,7 @@ int visited[100][100] = { 0, };
 int cost[100][100] = { 0, };
 int solve();
 void init();
-queue<pair<int, int>> Q;
+queue<pair<int, int>> Q; //방문 리스트
 
 int main() {
 	freopen("input/1249_input.txt", "r", stdin);
@@ -43,14 +43,12 @@ int solve() {
 	while (!Q.empty()) {
 		idx_x = Q.front().first;
 		idx_y = Q.front().second;
-		//cout << "idx_x: " << idx_x << " idx_y: " << idx_y << endl;
 		Q.pop();
 		for (int i = 0; i < 4; i++) {
 			int nx = idx_x + dx[i];
 			int ny = idx_y + dy[i];
 			if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
 			if (cost[nx][ny] > cost[idx_x][idx_y] + map[nx][ny]) {
-				//printf("nx: %d ny: %d\n", nx, ny);
 				cost[nx][ny] = cost[idx_x][idx_y] + map[nx][ny];
 				Q.push(make_pair(nx, ny));
 			}
