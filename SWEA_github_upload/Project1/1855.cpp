@@ -14,14 +14,13 @@ long long cnt = 0;
 queue<int> child[100002];
 queue<int> Q;
 
-
 void solve();
 
 int main(int argc, char** argv)
 {
 	int test_case;
 	int T;
-	freopen("input2.txt", "r", stdin);
+	freopen("input/1855_input.txt", "r", stdin);
 	cin >> T;
 	for (test_case = 1; test_case <= T; ++test_case)
 	{
@@ -41,7 +40,7 @@ int main(int argc, char** argv)
 			}
 
 		}
-		printf("make dp complete!\n");
+		//printf("make dp complete!\n");
 		solve();
 		cout << cnt << endl;
 		cnt = 0;
@@ -60,37 +59,33 @@ void solve() {
 			child[front].pop();
 		}
 		Q.pop();
-		/*연산*/
 		if (Q.empty()) break;
 		cur = Q.front();
 		bool flag = false;
-
+		//cout << "cur: " << cur << " front: " << front << endl;
 		if (depth[cur] != depth[front]) { //층이 다른경우
 			cur = parent[cur]; //층을 맞춰줌
-			//cout << "층 맞추기: " << endl;
 			flag = true;
 		}
-		//cout << "cur: " << cur << " front: " << front << endl;
 		int save_cur = cur; //저장
-		int save_front = front;
-		int moving_cur = cur;
-		int moving_front = front;
 		int iter = 0;
 		while (cur != front) {
-			if (dp[cur][iter] == dp[front][iter]) {//지금은 다른데, 다음번에 같아진다면
-				moving_front = front;
-				moving_cur = cur;
-				//printf("same next! moving_front: %d, moving_cur: %d\n", moving_front, moving_cur);
+			//printf("cur: %d, front: %d, iter: %d\n", cur, front, iter);
+			if (depth[cur] < pow(2, iter)) {
 				iter = 0;
+			} //root를 넘어가는 경우 iter = 0
+			if (dp[cur][iter] != dp[front][iter]) {//이번 iter에도 다른 경우
+				cur = dp[cur][iter];
+				front = dp[front][iter];
 			}
-
-			//if (depth[save_cur] < pow(2, iter)) { iter = 0; moving_cur = cur; moving_front = front; }
-			cur = dp[moving_cur][iter];
-			front = dp[moving_front][iter];
-			//printf("iter: %d, cur: %d, front: %d\n", iter, cur, front);
+			else if (iter == 0) { //이번 iter에 같아졌는데 iter가 0인 경우
+				cur = dp[cur][0];
+				front = dp[front][0];
+			}
+			else { //이번 iter에 같아지고 iter가 0이 아닌 경우
+				iter = -1;
+			}
 			iter++;
-
-			//if (depth[save_cur] < pow(2, iter)) { iter = 0; moving_cur = cur; moving_front = front; }//다음 탐색 범위가 root를 넘어가는 경우
 		}
 		//cout << "공통 조상: " << cur << endl;
 		if (flag) cnt += (2 * (depth[save_cur] - depth[cur])) + 1; //층이 달랐던 경우
