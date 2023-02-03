@@ -14,16 +14,16 @@ void result(char ret[]);
 int found(char string_A[]);
 
 int main() {
-	char input[] = "hi my name is wonchul";
+	char input[] = "hi my name is qqqqqq";
 	init(strlen(input), input);
 	for (int i = 0; i < t_size; i++) {
 		cout << string_arr[i];
 	}
 	cout << endl;
-	char input2[] = "won";
+	char input2[] = "qqq";
 	cout << found(input2) << endl;
 	char input3[] = "bbb";
-	change(input2, input3);
+	cout << change(input2, input3) << endl;
 	char* ret = new char[t_size];
 	result(ret);
 	for (int i = 0; i < t_size; i++) {
@@ -43,15 +43,18 @@ void init(int N, char init_string[]) {
 
 int change(char string_A[], char string_B[]) {
 	int num = 0;
+	bool founded = false;
 	while (1) {
 		int idx = found(string_A);
-		if (idx == -1) return -1;
+		if (idx == -1) break;
+		founded = true;
 		num++;
 		for (int i = 0; i < 3; i++) {
 			string_arr[idx++] = string_B[i];
 		}
 	}
-	return num;
+	if (!founded) return -1;
+	else return num;
 }
 
 void result(char ret[]) {
