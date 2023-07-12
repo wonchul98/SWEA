@@ -45,13 +45,16 @@
     <ClCompile Include="물류 허브.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="3813.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="make_input.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="1256.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="사전문제1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="사전 문제_1_1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="사전문제2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
